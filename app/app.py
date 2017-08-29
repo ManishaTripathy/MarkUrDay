@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask import request
 app = Flask(__name__)
 
@@ -9,17 +9,30 @@ def login():
 
 @app.route('/register')
 def register():
-    return 'register Page '
+    return render_template('register.html')
 
-@app.route('/', methods=['POST'])
+     
+@app.route('/calendar')
+def calendar():
+    return render_template('calendar.html')
+
+@app.route('/', methods=['GET','POST'])
 def login_or_register():
     error = None
+    
     if request.method == 'POST':
         if request.form['login_register'] == "Login":
-                pageFunctionName='loginPage'
+                return  redirect(url_for('calendar'))
+                #pageFunctionName='loginPage'
+            
         elif request.form['login_register'] == "Register":
-                pageFunctionName='registerPage'
-    return redirect(url_for(pageFunctionName))
+                return  redirect(url_for('register'))
+                #pageFunctionName='register'
+     
+
+
+
+
 
 
 if __name__ == '__main__':
