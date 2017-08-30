@@ -1,0 +1,25 @@
+
+
+<div id='content' data-role='content' style="text-align: center;">
+    <form action="{{ url_for('login') }}" method=post>
+        <div style="margin-top:15%; width:30%; height:30%;margin-left:35%;margin-right:30%;font-family:Comic Sans MS, Comic Sans;" >
+          
+                
+            <div>
+                <h2>Login</h2>
+            </div>
+            <dl>
+                <dt>Username (email)
+                <dd><input type=text name=username>
+                <dt>Password
+                <dd><input type=password name=password>
+                
+            </dl>
+			 <dl>
+                <button name="login_register" type="submit" value="Login">Login</button> <br /><br/>
+                <div style="color:black; font-weight:bold; font-size:150%">Or</div> <br/><br/>
+                <button class="center-alignment" name="login_register" type="submit" value="Register" >Sign Up</button> <br />
+            </dl>
+        </div>
+    </form>
+</div>
