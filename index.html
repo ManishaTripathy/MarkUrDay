@@ -15,13 +15,13 @@ $(document).ready(function(){
         var clickedmoment = $('#calendar').fullCalendar('getDate');
         var today = date;
         var difference = today.diff(clickedmoment, 'days');
-        alert("The current date of the calendar is " + clickedmoment.format());
-        alert("Difference between clicked dates is " + difference);
+        //alert("The current date of the calendar is " + clickedmoment.format());
+        //alert("Difference between clicked dates is " + difference);
         if($(this).css('background-color')!= "rgb(255, 0, 0)"){
            $(this).css('background-color', "red");
         }
         else if( $(this).css('background-color') == "rgb(255, 0, 0)"){
-           $(this).css('background-color', "3a87ad");
+           $(this).css('background-color', "ffffff");
         }
    }
  })
