@@ -21,11 +21,9 @@
 <meta charset='utf-8' />
 <link href='/static/css/fullcalendar.min.css' rel='stylesheet' />
 <link href='/static/css/fullcalendar.print.min.css' rel='stylesheet' media='print' />
-<!--link rel='stylesheet' href='/static/css/fullcalendar.css' /-->
 <script src='/static/js/jquery.min.js'></script>
 <script src='/static/js/moment.min.js'></script>
 <script src='/static/js/fullcalendar.min.js'></script>
-<!--script src='/static/js/fullcalendar.js'></script-->
 </head>
 
 
@@ -39,17 +37,27 @@
 			eventLimit: true, // allow "more" link when too many events
 			*/
 			dayClick: function(date, jsEvent, view) {
-			var clickedmoment = $('#calendar').fullCalendar('getDate');
-			var today = date;
-			var difference = today.diff(clickedmoment, 'days');
-			//alert("The current date of the calendar is " + clickedmoment.format());
-			//alert("Difference between clicked dates is " + difference);
-			if($(this).css('background-color')!= "rgb(255, 0, 0)"){
-			   $(this).css('background-color', "red");
-			}
-			else if( $(this).css('background-color') == "rgb(255, 0, 0)"){
-			   $(this).css('background-color', "ffffff");
-			}
+                var clickedmoment = $('#calendar').fullCalendar('getDate');
+                var today = date;
+                var difference = today.diff(clickedmoment, 'days');
+                //alert("The current date of the calendar is " + clickedmoment.format());
+                //alert("Difference between clicked dates is " + difference);
+                if($(this).css('background-color')!= "rgb(255, 0, 0)"){
+                    $(this).css('background-color', "red");
+                }
+                else if( $(this).css('background-color') == "rgb(255, 0, 0)"){
+                    $(this).css('background-color', "ffffff");
+                }
+                $.ajax({
+                    url: '/updatecalendar',
+                    data: JSON.stringify(clickedmoment),
+                    contentType: 'application/json',
+                    type: "POST",
+                    success: function(json){
+                        alert('Posted data successfully');
+                    }
+                });
+                
 			}
 
 		});
@@ -79,27 +87,4 @@
 
 </body>
 </html>
-<!--body>
-<script>
-$(document).ready(function(){
-   // page is now ready, initialize the calendar...
-   $('#calendar').fullCalendar({
-   // put your options and callbacks here
-    dayClick: function(date, jsEvent, view) {
-        var clickedmoment = $('#calendar').fullCalendar('getDate');
-        var today = date;
-        var difference = today.diff(clickedmoment, 'days');
-        //alert("The current date of the calendar is " + clickedmoment.format());
-        //alert("Difference between clicked dates is " + difference);
-        if($(this).css('background-color')!= "rgb(255, 0, 0)"){
-           $(this).css('background-color', "red");
-        }
-        else if( $(this).css('background-color') == "rgb(255, 0, 0)"){
-           $(this).css('background-color', "ffffff");
-        }
-   }
- })
-});
-</script>
-<div id='calendar'></div>
-</body-->
+
